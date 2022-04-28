@@ -1,7 +1,9 @@
 #!/bin/sh
 
 {{ if eq .chezmoi.os "linux" -}}
-sudo apt update && sudo apt install -y neovim
+# sudo apt update && sudo apt install -y neovim
+wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb
+sudo apt install ./nvim-linux64.deb
 {{ else if eq .chezmoi.os "darwin" -}}
 brew install neovim
 {{ end -}}
