@@ -1,0 +1,9 @@
+#!/bin/sh
+
+{{ if eq .chezmoi.os "linux" -}}
+sudo apt install -y neovim
+{{ else if eq .chezmoi.os "darwin" -}}
+brew install neovim
+{{ end -}}
+
+bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
