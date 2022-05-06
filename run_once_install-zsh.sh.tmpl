@@ -1,12 +1,13 @@
 #!/bin/sh
 
 {{ if eq .chezmoi.os "linux" -}}
-sudo apt update && sudo apt install -y zsh
+sudo apt update && sudo apt install -y zsh fonts-hack-ttf
 curl -sS https://starship.rs/install.sh | sh -s -- -y
-
 {{ else if eq .chezmoi.os "darwin" -}}
 brew install zsh
 brew install starship
+brew tap homebrew/cask-fonts
+brew install --cask font-hack-nerd-font
 {{ end -}}
 
 if [ ! -d ~/.oh-my-zsh ]; then
