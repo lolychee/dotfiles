@@ -1,0 +1,21 @@
+#!/bin/bash
+
+{{ if eq .chezmoi.os "linux" -}}
+# sudo apt update && sudo apt install -y neovim
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo bash -
+sudo apt-get update && sudo apt-get install -y yarn
+
+sudo apt install -y pip
+
+curl https://sh.rustup.rs -sSf | sh -s -- -y
+source "$HOME/.cargo/env"
+
+wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb
+sudo apt install ./nvim-linux64.deb
+rm ./nvim-linux64.deb
+{{ else if eq .chezmoi.os "darwin" -}}
+brew install neovim
+{{ end -}}
+
+
+curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh | bash -s -- -y
