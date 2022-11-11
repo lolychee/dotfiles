@@ -1,0 +1,13 @@
+{{- $codespaces:= env "CODESPACES" | not | not -}}
+{{- $remote_containers:= env "REMOTE_CONTAINERS" | not | not -}}
+
+sourceDir = {{ .chezmoi.sourceDir | quote }}
+
+[data]
+    name = "lychee xing"
+    remote_containers = {{ $remote_containers }}
+{{- if (or $codespaces $remote_containers) }}{{/* Codespaces dotfiles setup is non-interactive, so set an email address */}}
+    email = "lolychee@gmail.com"
+{{- else }}{{/* Interactive setup, so prompt for an email address */}}
+    email = {{ promptString "email" | quote }}
+{{- end }}
