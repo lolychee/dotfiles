@@ -2,7 +2,7 @@
 
 {{- if (or .codespaces .remote_containers) }}
 exit
-{{- else if eq .chezmoi.os "linux") -}}
+{{- else if eq .chezmoi.os "linux" -}}
 # sudo apt update && sudo apt install -y neovim
 curl -fsSL https://deb.nodesource.com/setup_18.x | sudo bash -
 sudo apt-get update && sudo apt-get install -y yarn
