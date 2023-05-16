@@ -1,0 +1,13 @@
+#!/bin/sh
+
+{{ if eq .chezmoi.os "linux" -}}
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - &&\
+sudo apt-get install -y nodejs
+{{ else if eq .chezmoi.os "darwin" -}}
+brew install node
+{{ end -}}
+
+sudo npm install -g opencommit
+if [ -v "${OPENAI_API_KEY}" ]; then
+  oc config set OPENAI_API_KEY=$OPENAI_API_KEY
+fi
