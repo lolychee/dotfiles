@@ -2,14 +2,7 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.222.0/containers/debian
 {
 	"name": "Dotfiles",
-	"build": {
-		"dockerfile": "Dockerfile",
-		// Update 'VARIANT' to pick an Debian version: bullseye, buster
-		// Use bullseye on local arm64/Apple Silicon.
-		"args": {
-			"VARIANT": "bullseye"
-		}
-	},
+	"image": "mcr.microsoft.com/devcontainers/base:bookworm",
 	// Set *default* container specific settings.json values on container create.
 	"settings": {},
 	// Add the IDs of extensions you want installed when the container is created.
@@ -21,9 +14,11 @@
 	// Uncomment when using a ptrace-based debugger like C++, Go, and Rust
 	// "runArgs": [ "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined" ],
 	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"workspaceFolder": "/home/vscode/.local/share/chezmoi",
 	"remoteUser": "vscode",
 	"features": {
-		"git": "os-provided"
+		"git": "os-provided",
+		"ghcr.io/prulloac/devcontainer-features/chezmoi:1": {}
 	},
 	"postCreateCommand": "./bootstrap.sh"
 }
