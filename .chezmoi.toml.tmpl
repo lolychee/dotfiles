@@ -4,11 +4,12 @@
 sourceDir = {{ .chezmoi.sourceDir | quote }}
 
 [data]
-    name = "lychee xing"
     codespaces = {{ $codespaces }}
     remote_containers = {{ $remote_containers }}
 {{- if (or $codespaces $remote_containers) }}{{/* Codespaces dotfiles setup is non-interactive, so set an email address */}}
+    name = "lychee xing"
     email = "lolychee@gmail.com"
 {{- else }}{{/* Interactive setup, so prompt for an email address */}}
+    name = {{ promptString "name" | quote }}
     email = {{ promptString "email" | quote }}
 {{- end }}
